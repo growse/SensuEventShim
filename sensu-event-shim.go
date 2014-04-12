@@ -1,4 +1,4 @@
-package "github.com/growse/sensu-event-shim"
+package sensu-event-shim
 
 import (
   "database/sql"
