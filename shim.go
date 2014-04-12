@@ -32,7 +32,7 @@ var stmt *sql.Stmt
 
 func main() {
     var err error
-    db, err = sql.Open("postgres", "user=sensuevents dbname=sensuevents")
+    db, err = sql.Open("postgres", "user=sensuevents dbname=sensuevents password=password")
     if err != nil {
         log.Fatal(err)
     }
@@ -40,7 +40,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    stmt, err = db.Prepare("INSERT INTO events (event) VALUES(?)")
+    stmt, err = db.Prepare("INSERT INTO events (event) VALUES($1)")
     if err != nil {
         log.Fatal(err)
     }
