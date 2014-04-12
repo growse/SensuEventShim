@@ -1,4 +1,4 @@
-package sensu_event_shim
+package sensu-event-shim
 
 import (
   "database/sql"
