@@ -1,7 +1,9 @@
-package sensu-event-shim
+package sensu_event_shim
 
 import (
   "database/sql"
+  "net/http"
+  "fmt"
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
