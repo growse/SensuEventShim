@@ -5,6 +5,9 @@ import (
     "database/sql"
     "net/http"
     "log"
+    "os"
+    "fmt"
+    "encoding/json"
     "io/ioutil"
 )
 
@@ -30,9 +33,21 @@ func eventhandler(w http.ResponseWriter, r *http.Request) {
 var db *sql.DB
 var stmt *sql.Stmt
 
+type Configuration struct {
+    Dbuser string
+    Dbname string
+    Dbpassword string
+    Dbhost string
+    Dbport int
+}
+
 func main() {
     var err error
-    db, err = sql.Open("postgres", "user=sensuevents dbname=sensuevents password=password")
+    file, _ := os.Open("sensueventshim.json")
+    decoder := json.NewDecoder(file)
+    configuration := Configuration{}
+    decoder.Decode(&configuration)
+    db, err = sql.Open("postgres", fmt.Sprintf("host=%s port=%d user=%s dbname=%s password=%s", configuration.Dbhost, configuration.Dbport, configuration.Dbuser, configuration.Dbname, configuration.Dbpassword))
     if err != nil {
         log.Fatal(err)
     }

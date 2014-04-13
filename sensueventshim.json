@@ -1,0 +1,7 @@
+{
+    "Dbname":"sensuevents",
+    "Dbuser":"sensuevents",
+    "Dbpassword":"password"
+    "Dbhost":"localhost"
+    "Dbport":5432
+}
